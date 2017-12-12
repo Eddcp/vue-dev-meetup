@@ -1,6 +1,6 @@
 # vue-devmeetup-simple
 
-> A Vue.js project
+> A Vue.js project using webpack-simple template + Vuex + Vue-Router + Vuetify
 
 ## Build Setup
 
