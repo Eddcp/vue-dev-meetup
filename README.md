@@ -2,6 +2,8 @@
 
 > A Vue.js project using webpack-simple template + Vuex + Vue-Router + Vuetify
 
+This project was created following the lessons of [Academind](https://www.youtube.com/watch?v=FXY1UyQfSFw&list=PL55RiY5tL51qxUbODJG9cgrsVd7ZHbPrt)
+
 ## Build Setup
 
 ``` bash
