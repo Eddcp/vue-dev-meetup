@@ -23,7 +23,7 @@ export const store = new Vuex.Store({
       }
     ],
     user: {
-      id: '23415kdsa',
+      id: '23415kdstaa',
       registeredMeetups: ['asesatasd']
     }
   },
