@@ -31,12 +31,9 @@
 
 <script>
 export default {
-  data() {
-    return {
-      meetups: [
-        { imageUrl: 'https://media.timeout.com/images/103444978/image.jpg', id: '2134aser3k1', title: 'Meetup New York'},
-        { imageUrl: 'https://blog.netsabe.com.br/wp-content/uploads/2016/08/thiago-mesquita-03.jpg', id: '232412kfdsa', title: 'Meetup Uberlândia'}
-      ]
+  computed: {
+    meetups() {
+      return this.$store.getters.featuredMeetups
     }
   },
   methods: {
