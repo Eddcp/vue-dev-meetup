@@ -26,10 +26,7 @@ export const store = new Vuex.Store({
         description: 'Descrição'
       }
     ],
-    user: {
-      id: '23415kdstaa',
-      registeredMeetups: ['asesatasd']
-    }
+    user: null
   },
   mutations,
   actions,

@@ -14,4 +14,8 @@ export const loadMeetup = (state) => {
       return meetup.id === meetupId
     })
   }
-}
+};
+
+export const user = (state) => {
+  return state.user
+};

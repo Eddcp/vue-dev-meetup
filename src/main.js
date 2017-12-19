@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 
 import App from './App.vue'
+
 import router from './router'
 import { store } from './store'
 import DateFilter from './filters/date'
+import { firebaseApp } from './firebaseApp'
 
 import './stylus/main.scss'
 
