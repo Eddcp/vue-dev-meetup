@@ -67,13 +67,11 @@
   		      <v-flex xs12 sm6 offset-sm3>
               <v-date-picker
                 v-model="date" locale="pt-br"></v-date-picker>
-              <p>{{date}}</p>
             </v-flex>
   		    </v-layout>
           <v-layout row>
            <v-flex xs12 sm6 offset-sm3>
               <v-time-picker v-model="time" format="24hr"></v-time-picker>
-              <p>{{time}}</p>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -84,7 +82,6 @@
                 type="submit">
                 Create Meetup
               </v-btn>
-              {{ submittableDateTime }}
             </v-flex>
           </v-layout>
   		  </form>
@@ -123,7 +120,7 @@ export default {
         date.setHours(this.time.getHours())
         date.setMinutes(this.time.getMinutes())
       }
-      return date     
+      return date
     }
   },
   methods: {
@@ -140,7 +137,7 @@ export default {
       if (!this.formIsValid) {
         return
       }
-      const meetupData = getMeetupData();
+      const meetupData = this.getMeetupData();
       this.$store.dispatch('createMeetup', meetupData)
       this.$router.push('/meetups')
     }

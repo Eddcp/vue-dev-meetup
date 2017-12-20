@@ -5,6 +5,10 @@ export const mutations = {
     state.loadedMeetups.push(payload)
   },
 
+  [types.SET_LOADED_MEETUPS] (state,payload) {
+    state.loadedMeetups = payload
+  },
+
   [types.SET_USER] (state,payload){
     state.user = payload
   },
