@@ -26,7 +26,9 @@ export const store = new Vuex.Store({
         description: 'Descrição'
       }
     ],
-    user: null
+    user: null,
+    loading: false,
+    error: null
   },
   mutations,
   actions,

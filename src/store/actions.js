@@ -15,25 +15,12 @@ export const createMeetup = ({commit}, payload) => {
 }
 
 export const signUserUp = ({commit}, payload) => {
+  commit(types.SET_LOADING, true)
+  commit(types.CLEAR_ERROR)
   firebaseApp.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-    .then(user => {
-        const newUser = {
-          id: user.uid,
-          registeredMeetups: []
-        }
-        commit(types.SET_USER, newUser)
-      }
-    )
-    .catch(error => {
-        console.log(error)
-      }
-    )
-}
-
-export const signUserIn = ({commit}, payload) => {
-  firebaseApp.auth().signInWithEmailAndPassword(payload.email, payload.password)
     .then(
       user => {
+        commit(types.SET_LOADING, false)
         const newUser = {
           id: user.uid,
           registeredMeetups: []
@@ -43,7 +30,36 @@ export const signUserIn = ({commit}, payload) => {
     )
     .catch(
       error => {
+        commit(types.SET_LOADING, false)
+        commit(types.SET_ERROR, error)
         console.log(error)
       }
     )
+}
+
+export const signUserIn = ({commit}, payload) => {
+  commit(types.SET_LOADING, true)
+  commit(types.CLEAR_ERROR)
+  firebaseApp.auth().signInWithEmailAndPassword(payload.email, payload.password)
+    .then(
+      user => {
+        commit(types.SET_LOADING, false)
+        const newUser = {
+          id: user.uid,
+          registeredMeetups: []
+        }
+        commit(types.SET_USER, newUser)
+      }
+    )
+    .catch(
+      error => {
+        commit(types.SET_LOADING, false)
+        commit(types.SET_ERROR, error)
+        console.log(error)
+      }
+    )
+}
+
+export const clearError = ({commit}) => {
+  commit(types.CLEAR_ERROR)
 }

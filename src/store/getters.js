@@ -19,3 +19,11 @@ export const loadMeetup = (state) => {
 export const user = (state) => {
   return state.user
 };
+
+export const loading = (state) => {
+  return state.loading
+}
+
+export const error = (state) => {
+  return state.error
+}
