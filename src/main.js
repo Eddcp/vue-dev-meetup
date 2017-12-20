@@ -18,6 +18,7 @@ Vue.use(Vuetify,{
     error: '#b71c1c'
   }
 })
+
 Vue.config.productionTip = false
 
 Vue.filter('date', DateFilter)
