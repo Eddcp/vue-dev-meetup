@@ -13,7 +13,7 @@ import './stylus/main.scss'
 //Vuetify Config
 Vue.use(Vuetify,{
   theme: {
-    primary: '#3f51b5',
+    primary: '#2196F3',
     secondary: '#b0bec5',
     accent: '#8c9eff',
     error: '#b71c1c'
@@ -31,6 +31,12 @@ new Vue({
   store,
   render: h => h(App),
   created() {
+    //Firebase authentication
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      if (user) {
+        store.dispatch('autoSignIn', user)
+      }
+    })
     this.$store.dispatch('loadMeetups')
   }
 })

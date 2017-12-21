@@ -29,16 +29,29 @@ export const createMeetup = ({commit}, payload) => {
   const meetup = {
     title: payload.title,
     location: payload.location,
-    imageUrl: payload.imageUrl,
     description: payload.description,
     date: payload.date.toISOString(),
   }
+  let imageUrl, key
 
   firebaseApp.database().ref('meetups').push(meetup)
     .then((data) => {
-      const key = data.key
+      key = data.key
+      return key
+    })
+    .then(key => {
+      const filename = payload.image.name
+      const ext = filename.slice(filename.lastIndexOf('.'))
+      return firebaseApp.storage().ref('meetups/' + key + '.' + ext).put(payload.image)
+    })
+    .then(fileData => {
+      imageUrl = fileData.metadata.downloadURLs[0]
+      return firebaseApp.database().ref('meetups').child(key).update({imageUrl: imageUrl})
+    })
+    .then(() => {
       commit(types.CREATE_MEETUP, {
         ...meetup,
+        imageUrl: imageUrl,
         id: key
       })
     })
@@ -91,6 +104,15 @@ export const signUserIn = ({commit}, payload) => {
         console.log(error)
       }
     )
+}
+
+export const autoSignIn = ({commit}, payload) => {
+  commit(types.SET_USER , {id: payload.uid, registeredMeetups: []})
+}
+
+export const logout = ({commit}) => {
+  firebaseApp.auth().signOut()
+  commit(types.SET_USER, null)
 }
 
 export const clearError = ({commit}) => {

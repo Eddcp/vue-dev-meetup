@@ -5,7 +5,7 @@ const config = {
   authDomain: "academind-vue-devmeetup.firebaseapp.com",
   databaseURL: "https://academind-vue-devmeetup.firebaseio.com",
   projectId: "academind-vue-devmeetup",
-  storageBucket: "academind-vue-devmeetup.appspot.com",
+  storageBucket: "gs://academind-vue-devmeetup.appspot.com",
   messagingSenderId: "580417947986"
 }
 
