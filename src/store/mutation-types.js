@@ -1,4 +1,5 @@
 export const CREATE_MEETUP = 'CREATE_MEETUP'
+export const UPDATE_MEETUP = 'UPDATE_MEETUP'
 export const SET_LOADED_MEETUPS = 'SET_LOADED_MEETUPS'
 export const SET_USER = 'SET_USER'
 export const SET_LOADING = 'SET_LOADING'

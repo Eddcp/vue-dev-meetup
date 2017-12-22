@@ -8,7 +8,7 @@ import { store } from './store'
 import DateFilter from './filters/date'
 import { firebaseApp } from './firebaseApp'
 
-import './stylus/main.scss'
+import './styles/main.scss'
 
 //Vuetify Config
 Vue.use(Vuetify,{

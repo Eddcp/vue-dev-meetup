@@ -13,7 +13,9 @@ export const loadMeetups = ({commit}) => {
           title: obj[key].title,
           description: obj[key].description,
           imageUrl: obj[key].imageUrl,
-          date: obj[key].date
+          location: obj[key].location,
+          date: obj[key].date,
+          creatorId: obj[key].creatorId
         })
       }
       commit(types.SET_LOADED_MEETUPS, meetups)
@@ -25,12 +27,13 @@ export const loadMeetups = ({commit}) => {
     })
 }
 
-export const createMeetup = ({commit}, payload) => {
+export const createMeetup = ({commit, getters}, payload) => {
   const meetup = {
     title: payload.title,
     location: payload.location,
     description: payload.description,
     date: payload.date.toISOString(),
+    creatorId: getters.user.id
   }
   let imageUrl, key
 
@@ -57,6 +60,31 @@ export const createMeetup = ({commit}, payload) => {
     })
     .catch((error) => {
       console.log(error)
+    })
+}
+
+export const updateMeetupData = ({commit}, payload) => {
+  commit(types.SET_LOADING, true)
+  const updateObj = {}
+
+  if (payload.title) {
+    updateObj.title = payload.title
+  }
+  if (payload.description) {
+    updateObj.description = payload.description
+  }
+  if (payload.date) {
+    updateObj.date = payload.date
+  }
+
+  firebaseApp.database().ref('meetups').child(payload.id).update(updateObj)
+    .then(() => {
+      commit(types.SET_LOADING, false)
+      commit(types.UPDATE_MEETUP, payload)
+    })
+    .catch(error => {
+      console.log(error)
+      commit(types.SET_LOADING, false)
     })
 }
 
