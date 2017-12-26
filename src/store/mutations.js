@@ -15,9 +15,24 @@ export const mutations = {
     if (payload.description) {
       meetup.description = payload.description
     }
-    if (payload.description) {
+    if (payload.date) {
       meetup.date = payload.date
     }
+  },
+
+  [types.REGISTER_USER_FOR_MEETUP] (state, payload) {
+    const id = payload.id
+    if (state.user.registeredMeetups.findIndex(meetup => meetup.id === id) >= 0) {
+      return
+    }
+    state.user.registeredMeetups.push(id)
+    state.user.fbKeys[id] = payload.fbKey
+  },
+
+  [types.UNREGISTER_USER_FROM_MEETUP] (state, payload) {
+    const registeredMeetups = state.user.registeredMeetups
+    registeredMeetups.splice(registeredMeetups.findIndex(meetup => meetup.id === payload), 1)
+    Reflect.deleteProperty(state.user.fbKeys, payload)
   },
 
   [types.SET_LOADED_MEETUPS] (state,payload) {

@@ -12,11 +12,6 @@ import PageHeader from './components/PageHeader.vue'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      sideNav: false
-    }
-  },
   components: {
     PageHeader
   }

@@ -1,6 +1,40 @@
 import * as types from './mutation-types'
 import { firebaseApp } from '../firebaseApp'
 
+export const registerUserForMeetup = ({commit, getters}, payload) => {
+  commit(types.SET_LOADING, true)
+  const user = getters.user
+  firebaseApp.database().ref(`users/${user.id}`).child('/registrations/')
+    .push(payload)
+    .then(data => {
+      commit(types.SET_LOADING, false)
+      commit(types.REGISTER_USER_FOR_MEETUP, {id: payload, fbKey: data.key})
+    })
+    .catch(error => {
+      console.log(error)
+      commit(types.SET_LOADING, false)
+    })
+}
+
+export const unregisterUserFromMeetup = ({commit, getters}, payload) => {
+  commit(types.SET_LOADING, true)
+  const user = getters.user
+  if (!user.fbKeys) {
+    return
+  }
+  const fbKey = user.fbKeys[payload]
+  firebaseApp.database().ref(`/users/${user.id}/registrations/`).child(fbKey)
+    .remove()
+    .then(() => {
+      commit(types.SET_LOADING, false)
+      commit(types.UNREGISTER_USER_FROM_MEETUP, payload)
+    })
+    .catch(error => {
+      console.log(error)
+      commit(types.SET_LOADING, false)
+    })
+}
+
 export const loadMeetups = ({commit}) => {
   commit(types.SET_LOADING, true)
   firebaseApp.database().ref('meetups').once('value')
@@ -97,7 +131,8 @@ export const signUserUp = ({commit}, payload) => {
         commit(types.SET_LOADING, false)
         const newUser = {
           id: user.uid,
-          registeredMeetups: []
+          registeredMeetups: [],
+          fbKeys: {}
         }
         commit(types.SET_USER, newUser)
       }
@@ -120,7 +155,8 @@ export const signUserIn = ({commit}, payload) => {
         commit(types.SET_LOADING, false)
         const newUser = {
           id: user.uid,
-          registeredMeetups: []
+          registeredMeetups: [],
+          fbKeys: {}
         }
         commit(types.SET_USER, newUser)
       }
@@ -135,7 +171,11 @@ export const signUserIn = ({commit}, payload) => {
 }
 
 export const autoSignIn = ({commit}, payload) => {
-  commit(types.SET_USER , {id: payload.uid, registeredMeetups: []})
+  commit(types.SET_USER , {
+    id: payload.uid,
+    registeredMeetups: [],
+    fbKeys: {}
+  })
 }
 
 export const logout = ({commit}) => {

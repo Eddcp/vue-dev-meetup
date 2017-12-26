@@ -25,11 +25,15 @@
           height="400px"></v-card-media>
           <v-card-text>
             <div class="info--text">{{ meetup.date | date }} - {{ meetup.location }}</div>
+            <div>
+              <edit-meetup-date-dialog :meetup="meetup" v-if="userIsCreator"></edit-meetup-date-dialog>
+              <edit-meetup-time-dialog :meetup="meetup" v-if="userIsCreator"></edit-meetup-time-dialog>
+            </div>
             <div>{{ meetup.description }}</div>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="primary">Register</v-btn>
+            <register-dialog :meetupId="meetup.id"></register-dialog>
           </v-card-actions>
 				</v-card>
 			</v-flex>
@@ -39,6 +43,9 @@
 
 <script>
 import EditMeetupDialog from './Edit/EditMeetupDialog.vue'
+import EditMeetupDateDialog from './Edit/EditMeetupDateDialog.vue'
+import EditMeetupTimeDialog from './Edit/EditMeetupTimeDialog.vue'
+import RegisterDialog from './Registration/RegisterDialog.vue'
 
 export default {
   props: ['id'],
@@ -61,7 +68,10 @@ export default {
     }
   },
   components: {
-    EditMeetupDialog
+    EditMeetupDialog,
+    EditMeetupDateDialog,
+    EditMeetupTimeDialog,
+    RegisterDialog
   }
 }
 </script>
