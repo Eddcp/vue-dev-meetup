@@ -73,7 +73,6 @@
     },
     created() {
       let pickerDate = new Date(this.meetup.date)
-      console.log(this.meetup.date)
       this.editableDate = pickerDate.getUTCFullYear() + '-' + (pickerDate.getUTCMonth() + 1) + '-' + pickerDate.getUTCDate()
     }
   }
