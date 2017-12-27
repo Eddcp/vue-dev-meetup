@@ -22,7 +22,6 @@ Vue.use(Vuetify,{
 
 Vue.config.productionTip = false
 
-//Filters
 Vue.filter('date', DateFilter)
 
 new Vue({
@@ -31,7 +30,6 @@ new Vue({
   store,
   render: h => h(App),
   created() {
-    //Firebase authentication
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
         this.$store.dispatch('autoSignIn', user)

@@ -185,14 +185,13 @@ export const fetchUserData = ({commit, getters}) => {
       const dataPairs = data.val()
       let registeredMeetups = []
       let swappedPairs = {}
-      const updatedUser = {}
 
       for (let key in dataPairs) {
         registeredMeetups.push(dataPairs[key])
         swappedPairs[dataPairs[key]] = key
       }
 
-      updatedUSer = {
+      const updatedUser = {
         id: getters.user.id,
         registeredMeetups: registeredMeetups,
         fbKeys: swappedPairs

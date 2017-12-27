@@ -53,6 +53,7 @@ export default {
   props: ['id'],
   computed: {
     meetup() {
+      console.log(this.id)
       return this.$store.getters.loadMeetup(this.id)
     },
     userIsAuthenticated() {

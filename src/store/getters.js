@@ -1,5 +1,6 @@
 export const loadedMeetups = (state) => {
-  return state.loadedMeetups.sort((meetupA, meetupB) => {
+  const meetups = state.meetup.loadedMeetups
+  return meetups.sort((meetupA, meetupB) => {
     return meetupA.date > meetupB.date
   })
 };
@@ -10,20 +11,20 @@ export const featuredMeetups = (state, getters) => {
 
 export const loadMeetup = (state) => {
   return (meetupId) => {
-    return state.loadedMeetups.find((meetup) => {
+    return state.meetup.loadedMeetups.find((meetup) => {
       return meetup.id === meetupId
     })
   }
 };
 
 export const user = (state) => {
-  return state.user
+  return state.user.user
 };
 
 export const loading = (state) => {
-  return state.loading
+  return state.shared.loading
 }
 
 export const error = (state) => {
-  return state.error
+  return state.shared.error
 }
