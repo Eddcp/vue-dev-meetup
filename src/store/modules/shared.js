@@ -1,4 +1,31 @@
 import * as types from '../mutation-types'
+import { firebaseApp } from '@/firebaseApp'
+
+const state = {
+  loading: false,
+  error: null
+}
+
+const getters = {
+  loading: (state) => {
+    return state.loading
+  },
+  
+  error: (state) => {
+    return state.error
+  }
+}
+
+const actions = {
+  logout({commit}) {
+    firebaseApp.auth().signOut()
+    commit(types.SET_USER, null)
+  },
+
+  clearError({commit}) {
+    commit(types.CLEAR_ERROR)
+  }
+}
 
 const mutations = {
   [types.SET_LOADING] (state, payload) {
@@ -14,12 +41,9 @@ const mutations = {
   }
 }
 
-const state = {
-  loading: false,
-  error: null
-}
-
 export default {
   state,
+  getters,
+  actions,
   mutations
 }
