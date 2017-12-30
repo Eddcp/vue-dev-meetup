@@ -60,7 +60,7 @@
   		    </v-layout>
   		    <v-layout row>
   		      <v-flex xs12 sm6 offset-sm3>
-              <span>Choose a Data & Time</span>
+              <p>Choose a Date & Time</p>
             </v-flex>
   		    </v-layout>
   		    <v-layout row class="mb-2">

@@ -44,10 +44,10 @@
 </template>
 
 <script>
-import EditMeetupDialog from './Edit/EditMeetupDialog.vue'
-import EditMeetupDateDialog from './Edit/EditMeetupDateDialog.vue'
-import EditMeetupTimeDialog from './Edit/EditMeetupTimeDialog.vue'
-import RegisterDialog from './Registration/RegisterDialog.vue'
+import EditMeetupDialog from '@/components/Meetup/Edit/EditMeetupDialog.vue'
+import EditMeetupDateDialog from '@/components/Meetup/Edit/EditMeetupDateDialog.vue'
+import EditMeetupTimeDialog from '@/components/Meetup/Edit/EditMeetupTimeDialog.vue'
+import RegisterDialog from '@/components/Meetup/Registration/RegisterDialog.vue'
 
 export default {
   props: ['id'],

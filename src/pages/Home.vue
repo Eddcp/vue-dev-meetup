@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-container>
+  <v-container fluid>
     <v-layout row wrap class="mb-2">
       <v-flex xs12 sm6 class="text-xs-center text-sm-right">
         <v-btn large router to="/meetups" class="info">Explore Meetups</v-btn>
